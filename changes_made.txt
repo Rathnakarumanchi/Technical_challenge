@@ -1,0 +1,23 @@
+changes made in order to have a connection between databse instance and api instance. (reference screenshot is also attached on my project, kindly have a look on that)
+
+vi /api/app.json
+
+var pg = require('pg');
+var conString = "postgres://postgres:password@terraform-20200722154649654100000001.c31frw5xutol.us-east-2.rds.amazonaws.com:5432/mydb";
+
+(fyi, username of my postgres database is "postgres", pasword "password",
+added the endpoint of my database instance along with port number and db name)
+
+
+
+changes made to have communication between api server and web server. (reference screenshot is attached on my project/repo)
+
+vi web/routes/undex.js
+
+var express = require('express');
+var router = express.Router();
+var request = require('request');
+
+
+var api_url = 'http://<public_ip_address_of_my_api_server>:3000/api/status';
+
